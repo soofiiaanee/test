@@ -1,0 +1,47 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block css %}
+{% endblock css%}
+
+{% block fos_user_content %}
+    
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12">
+                {%include 'forms/menu.html.twig'%}
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron mt-3">
+ 
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            
+            <div class="formgroup">
+               <label for="username"><h3>Nom d'utilisateur</h3></label>
+               <input class="form-control form-control-lg" type="text" id="username" name="_username" value="{{ last_username }}" required="required">
+            </div>
+            
+            <div class="formgroup">
+               <label for="password" class="mt-3"><h3>Mot de passe</h3></label>
+               <input class="form-control form-control-lg" type="password" id="password" name="_password" required="required" >
+            </div>
+                
+            <div class="checkbox ml-5 mt-3">
+               <input class="form-check-input" type="checkbox" id="remember_me" name="_remember_me" value="on" >
+               <label for="remember_me"><h6>Se rappeler de moi</h6></label>
+            </div>
+            <div class="row justify-content-center">
+                <input class="btn btn-success btn-lg" type="submit" id="_submit" name="_submit" value="Connexion" />
+            </div>
+            
+        </form>
+    </div>
+        
+    {% if error %}
+       <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    
+{% endblock fos_user_content %}

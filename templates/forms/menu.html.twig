@@ -1,0 +1,31 @@
+{% block css %}
+    <style>
+        .nav-link
+        {
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+    </style>
+{% endblock css %}
+
+<div class="container text-center">
+    <ul class="nav nav-pills">
+        
+        <li class="nav-item">
+            <a class="nav-link active bg-secondary" href="{{path('home')}}">Accueil</a>
+        </li>
+           
+        {% if app.user%}
+            <li class="nav-item">
+                <a class="nav-link active bg-secondary" href="{{ path('profil') }}">Profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active bg-secondary" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link active bg-secondary" href="{{ path('fos_user_security_login') }}">Connexion</a>
+            </li>    
+        {% endif%}
+    </ul>
+</div>
